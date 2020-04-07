@@ -90,7 +90,7 @@ jobs:
 
     - name: Remove files
       if: steps.compile.outputs.status == 'success'
-       run: |
+      run: |
         rm -rf openwrt/bin/targets/armvirt/64/openwrt-armvirt-64-default.manifest
         rm -rf openwrt/bin/targets/armvirt/64/openwrt-armvirt-64-Image
         rm -rf openwrt/bin/targets/armvirt/64/openwrt-armvirt-64-Image-initramfs
