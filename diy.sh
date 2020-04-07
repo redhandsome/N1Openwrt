@@ -18,9 +18,6 @@ git clone https://github.com/jerrykuku/luci-theme-argon.git -b 18.06 package/min
 echo '去除默认bootstrap主题'
 sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
 
-#sed -i "s/114.114.114.114,114.114.115.115/114.114.114.114,223.5.5.5/g" package/lean/luci-app-flowoffload/root/etc/init.d/flowoffload
-#sed -i "s/114.114.114.114,114.114.115.115/114.114.114.114,223.5.5.5/g" package/lean/luci-app-flowoffload/luasrc/model/cbi/flowoffload.lua
-
 echo '网易云音乐'
 git clone https://github.com/project-openwrt/luci-app-unblockneteasemusic.git package/mine/luci-app-unblockneteasemusic
 
