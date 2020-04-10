@@ -135,7 +135,7 @@ jobs:
         allowUpdates: true
         tag: ${{ env.tag_name }}
         commit: master
-        token: ${{ secrets.GITHUB_TOKEN  }}
+        token: ${{ secrets.RELEASES_TOKEN  }}
         body: |
           当前使用版本:（编译前的最后一次源码更新记录）
           ${{ env.useVersionInfo }}
