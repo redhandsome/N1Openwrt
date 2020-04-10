@@ -102,7 +102,9 @@ jobs:
         rm -rf openwrt/bin/targets/armvirt/64/openwrt-armvirt-64-Image-initramfs
         rm -rf openwrt/bin/targets/armvirt/64/openwrt-armvirt-64-root.squashfs.gz
         rm -rf openwrt/bin/targets/armvirt/64/openwrt-armvirt-64-rootfs.cpio.gz   
-        
+        cd openwrt/bin/targets/*/*
+        echo "::set-env name=FIRMWARE::$PWD"
+
     - name: Upload bin directory
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
@@ -137,7 +139,7 @@ jobs:
         body: |
           当前使用版本:（编译前的最后一次源码更新记录）
           ${{ env.useVersionInfo }}
-        artifacts: "${{ env.FIRMWARE }}/* , openwrt/.config , n1/opt/imgs/*"    
+        artifacts: "${{ env.FIRMWARE }}/*.tar.gz"  
 
 
 
