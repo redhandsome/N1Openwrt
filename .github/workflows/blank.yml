@@ -56,4 +56,4 @@ jobs:
           当前使用版本:（编译前的最后一次源码更新记录）
           ${{ env.useVersionInfo }}
         artifacts: "${{ env.FIRMWARE }}/*.tar.gz"  
-=
+
