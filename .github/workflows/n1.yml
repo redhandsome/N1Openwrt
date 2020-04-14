@@ -9,14 +9,13 @@
 name: N1
 
 on:
+  repository_dispatch:
   push:
     branches: 
       - master
     paths:
       - '.github/workflows/n1.yml'
       - 'ni.config'
-  watch:
-    types: [started]
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
@@ -24,6 +23,7 @@ env:
   CONFIG_FILE: ni.config
   DIY_SH: diy.sh
   SSH_ACTIONS: false
+  UPLOAD_WETRANSFER: true
   UPLOAD_BIN_DIR: false 
   UPLOAD_FIRMWARE: false
   TZ: Asia/Shanghai
@@ -141,5 +141,10 @@ jobs:
           ${{ env.useVersionInfo }}
         artifacts: "${{ env.FIRMWARE }}/*.tar.gz"  
 
-
+    - name: Upload firmware to WeTransfer
+      if: steps.organize.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true' && !cancelled()
+      run: |
+        curl -fsSL git.io/file-transfer | sh
+        ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
+        echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
 
